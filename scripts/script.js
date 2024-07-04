@@ -27,11 +27,8 @@ if (personalMovieDB.count < 10) {
   alert("You are a cinephile");
 };
 
-let lastFilmName;
-let ratingOfFilm;
-
-for (let i = 0; ;) {
-  lastFilmName = prompt("One of the last film what you have seen?", '');
+for (; ;) {
+  const lastFilmName = prompt("One of the last film what you have seen?", '');
   if (lastFilmName === null
     || lastFilmName === ''
     || lastFilmName.length > 50) {
@@ -39,17 +36,17 @@ for (let i = 0; ;) {
   };
 
   while (true) {
-    ratingOfFilm = prompt("Wich rating you want to give it?", '');
+    const ratingOfFilm = prompt("Wich rating you want to give it?", '');
     if (ratingOfFilm === null
       || ratingOfFilm === ''
       || ratingOfFilm.length > 50) {
       continue;
     };
+    personalMovieDB.movies[lastFilmName] = ratingOfFilm;
     break;
   };
 
-  personalMovieDB.movies[lastFilmName] = ratingOfFilm;
-  if (prompt("Want to say another one?(Y/N)", '').toUpperCase() === 'N') {
+  if (prompt("Want to quit?(Q - quit)", '').toUpperCase() === 'Q') {
     break;
   };
 };
