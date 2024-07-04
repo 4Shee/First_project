@@ -1,6 +1,15 @@
 "use strict";
 
-const numberOfFilms = prompt("How many films you've seen already?", '');
+let numberOfFilms;
+
+do {
+  numberOfFilms = prompt("How many films you've seen already?", '');
+}
+while (
+  numberOfFilms == null
+  || numberOfFilms == ''
+  || numberOfFilms < 0
+);
 
 const personalMovieDB = {
   count: numberOfFilms,
@@ -8,6 +17,14 @@ const personalMovieDB = {
   actors: {},
   genres: [],
   private: false,
+};
+
+if (personalMovieDB.count < 10) {
+  alert("You have watched a few films");
+} else if (personalMovieDB.count > 10 && personalMovieDB.count < 30) {
+  alert("You are a common viewer");
+} else if (personalMovieDB.count > 30) {
+  alert("You are a cinephile");
 };
 
 let lastFilmName;
@@ -20,7 +37,8 @@ for (let i = 0; ;) {
     || lastFilmName.length > 50) {
     continue;
   };
-  for (let j = 0; ;) {
+
+  while (true) {
     ratingOfFilm = prompt("Wich rating you want to give it?", '');
     if (ratingOfFilm === null
       || ratingOfFilm === ''
@@ -29,8 +47,9 @@ for (let i = 0; ;) {
     };
     break;
   };
+
   personalMovieDB.movies[lastFilmName] = ratingOfFilm;
-  if (prompt("Want to say another one?(Y/N)", '') === 'N') {
+  if (prompt("Want to say another one?(Y/N)", '').toUpperCase() === 'N') {
     break;
   };
 };
