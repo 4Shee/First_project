@@ -13,11 +13,26 @@ const personalMovieDB = {
 let lastFilmName;
 let ratingOfFilm;
 
-do {
+for (let i = 0; ;) {
   lastFilmName = prompt("One of the last film what you have seen?", '');
-  ratingOfFilm = prompt("Wich rating you want to give it?", '');
+  if (lastFilmName === null
+    || lastFilmName === ''
+    || lastFilmName.length > 50) {
+    continue;
+  };
+  for (let j = 0; ;) {
+    ratingOfFilm = prompt("Wich rating you want to give it?", '');
+    if (ratingOfFilm === null
+      || ratingOfFilm === ''
+      || ratingOfFilm.length > 50) {
+      continue;
+    };
+    break;
+  };
   personalMovieDB.movies[lastFilmName] = ratingOfFilm;
-}
-while (prompt("Want to say another one?(Y/N)", '') === 'Y');
+  if (prompt("Want to say another one?(Y/N)", '') === 'N') {
+    break;
+  };
+};
 
 console.log(personalMovieDB);
