@@ -10,15 +10,14 @@ const personalMovieDB = {
   private: false,
 };
 
+let lastFilmName;
+let ratingOfFilm;
 
-let lastFilmName = prompt("One of the last film what you have seen?", '');
-let ratingOfFilm = prompt("Wich rating you want to give it?", '');
-
-personalMovieDB.movies[lastFilmName] = ratingOfFilm;
-
-lastFilmName = prompt("One of the last film what you have seen?", '');
-ratingOfFilm = prompt("Wich rating you want to give it?", '');
-
-personalMovieDB.movies[lastFilmName] = ratingOfFilm;
+do {
+  lastFilmName = prompt("One of the last film what you have seen?", '');
+  ratingOfFilm = prompt("Wich rating you want to give it?", '');
+  personalMovieDB.movies[lastFilmName] = ratingOfFilm;
+}
+while (prompt("Want to say another one?(Y/N)", '') === 'Y');
 
 console.log(personalMovieDB);
