@@ -1,18 +1,19 @@
 "use strict";
 
-let numberOfFilms;
-
-do {
-  numberOfFilms = prompt("How many films you've seen already?", '');
+function start() {
+  for (; ;) {
+    const numberOfFilms = +prompt("How many films you've seen already?", '');
+    if (numberOfFilms == null
+      || numberOfFilms == ''
+      || isNaN(numberOfFilms)) {
+      continue;
+    }
+    return numberOfFilms;
+  }
 }
-while (
-  numberOfFilms == null
-  || numberOfFilms == ''
-  || numberOfFilms < 0
-);
 
 const personalMovieDB = {
-  count: numberOfFilms,
+  count: start(),
   movies: {},
   actors: {},
   genres: [],
@@ -25,7 +26,7 @@ if (personalMovieDB.count < 10) {
   alert("You are a common viewer");
 } else if (personalMovieDB.count > 30) {
   alert("You are a cinephile");
-};
+}
 
 for (; ;) {
   const lastFilmName = prompt("One of the last film what you have seen?", '');
@@ -33,7 +34,7 @@ for (; ;) {
     || lastFilmName === ''
     || lastFilmName.length > 50) {
     continue;
-  };
+  }
 
   while (true) {
     const ratingOfFilm = prompt("Wich rating you want to give it?", '');
@@ -41,14 +42,14 @@ for (; ;) {
       || ratingOfFilm === ''
       || ratingOfFilm.length > 50) {
       continue;
-    };
+    }
     personalMovieDB.movies[lastFilmName] = ratingOfFilm;
     break;
-  };
+  }
 
   if (prompt("Want to quit?(Q - quit)", '').toUpperCase() === 'Q') {
     break;
-  };
-};
+  }
+}
 
 console.log(personalMovieDB);
