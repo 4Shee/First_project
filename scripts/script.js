@@ -1,6 +1,6 @@
 "use strict";
 
-function start() {
+let start = function () {
   for (; ;) {
     const numberOfFilms = +prompt("How many films you've seen already?", '');
     if (numberOfFilms == null
@@ -10,7 +10,14 @@ function start() {
     }
     return numberOfFilms;
   }
-}
+};
+
+let showMyDB = function (obj) {
+  if (obj.private == false) {
+    return console.log(obj);
+  }
+  return console.log('This is a private object');
+};
 
 const personalMovieDB = {
   count: start(),
@@ -52,4 +59,4 @@ for (; ;) {
   }
 }
 
-console.log(personalMovieDB);
+showMyDB(personalMovieDB);
