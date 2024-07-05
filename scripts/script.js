@@ -3,20 +3,34 @@
 let start = function () {
   for (; ;) {
     const numberOfFilms = +prompt("How many films you've seen already?", '');
-    if (numberOfFilms == null
-      || numberOfFilms == ''
-      || isNaN(numberOfFilms)) {
+    if (checkConditions(numberOfFilms) || isNaN(numberOfFilms)) {
       continue;
     }
     return numberOfFilms;
   }
 };
 
+function checkConditions(value) {
+  if (value == null
+    || value == ''
+    || value.length > 50
+  ) {
+    return true
+  }
+  return false
+}
+
 let showMyDB = function (obj) {
   if (obj.private == false) {
     return console.log(obj);
   }
   return console.log('This is a private object');
+};
+
+let writeYourGenres = function (obj) {
+  for (let i = 0; i < 3; i++) {
+    obj.genres[i] = prompt(`Your ${i + 1} favorite genre?`)
+  }
 };
 
 const personalMovieDB = {
@@ -26,6 +40,8 @@ const personalMovieDB = {
   genres: [],
   private: false,
 };
+
+writeYourGenres(personalMovieDB);
 
 if (personalMovieDB.count < 10) {
   alert("You have watched a few films");
@@ -37,17 +53,13 @@ if (personalMovieDB.count < 10) {
 
 for (; ;) {
   const lastFilmName = prompt("One of the last film what you have seen?", '');
-  if (lastFilmName === null
-    || lastFilmName === ''
-    || lastFilmName.length > 50) {
+  if (checkConditions(lastFilmName)) {
     continue;
   }
 
   while (true) {
     const ratingOfFilm = prompt("Wich rating you want to give it?", '');
-    if (ratingOfFilm === null
-      || ratingOfFilm === ''
-      || ratingOfFilm.length > 50) {
+    if (checkConditions(ratingOfFilm)) {
       continue;
     }
     personalMovieDB.movies[lastFilmName] = ratingOfFilm;
