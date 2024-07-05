@@ -21,7 +21,7 @@ function checkConditions(value) {
 }
 
 const showMyDB = function (obj) {
-  if (obj.private == false) {
+  if (!obj.private) {
     return console.log(obj);
   }
   return console.log('This is a private object');
