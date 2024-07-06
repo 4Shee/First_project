@@ -41,19 +41,14 @@ const personalMovieDB = {
     }
   },
   writeYourGenres: function () {
-    let i = 0;
-    for (; ;) {
+    for (let i = 0; i < 3; i++) {
       this.genres[i] = prompt(`Your ${i + 1} favorite genre?`);
       if (this.checkConditions(this.genres[i])) {
         this.genres.pop();
-        continue;
+        i--;
       }
-      if (i === 2) {
-        this.showMyGenres();
-        break;
-      }
-      i++;
     }
+    this.showMyGenres();
   },
   showMyGenres: function () {
     this.genres.forEach(function (value, index) {
