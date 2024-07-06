@@ -67,6 +67,13 @@ const personalMovieDB = {
       } return ratingOfFilm;
     }
   },
+  toggleVisibleMyDB: function () {
+    if (this.private) {
+      this.private = false;
+    } else {
+      this.private = true;
+    }
+  }
 };
 
 personalMovieDB.start();
@@ -76,5 +83,8 @@ personalMovieDB.compareFilmsNumber();
 personalMovieDB.writeYourGenres();
 
 personalMovieDB.addFilmAndRating();
+
+personalMovieDB.toggleVisibleMyDB();
+personalMovieDB.toggleVisibleMyDB();
 
 personalMovieDB.showMyDB();
