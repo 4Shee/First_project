@@ -8,8 +8,8 @@ const personalMovieDB = {
   private: false,
   start: function () {
     for (; ;) {
-      const numberOfFilms = +prompt("How many films you've seen already?", '');
-      if (this.checkConditions(numberOfFilms) || isNaN(numberOfFilms)) {
+      const numberOfFilms = prompt("How many films you've seen already?", '');
+      if (this.checkConditions(numberOfFilms) || isNaN(+numberOfFilms)) {
         continue;
       }
       this.count = numberOfFilms;
@@ -17,8 +17,8 @@ const personalMovieDB = {
     }
   },
   checkConditions: function (value) {
-    if (value == null
-      || value == ''
+    if (value === null
+      || value === ''
       || value.length > 50
     ) {
       return true
@@ -41,9 +41,24 @@ const personalMovieDB = {
     }
   },
   writeYourGenres: function () {
-    for (let i = 0; i < 3; i++) {
-      this.genres[i] = prompt(`Your ${i + 1} favorite genre?`)
+    let i = 0;
+    for (; ;) {
+      this.genres[i] = prompt(`Your ${i + 1} favorite genre?`);
+      if (this.checkConditions(this.genres[i])) {
+        this.genres.pop();
+        continue;
+      }
+      if (i === 2) {
+        this.showMyGenres();
+        break;
+      }
+      i++;
     }
+  },
+  showMyGenres: function () {
+    this.genres.forEach(function (value, index) {
+      console.log(`Favorite genre #${index + 1} is - ${value}`);
+    });
   },
   addFilmAndRating: function () {
     do {
@@ -83,8 +98,5 @@ personalMovieDB.compareFilmsNumber();
 personalMovieDB.writeYourGenres();
 
 personalMovieDB.addFilmAndRating();
-
-personalMovieDB.toggleVisibleMyDB();
-personalMovieDB.toggleVisibleMyDB();
 
 personalMovieDB.showMyDB();
